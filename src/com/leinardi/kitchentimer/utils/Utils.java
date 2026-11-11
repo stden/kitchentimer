@@ -47,7 +47,9 @@ import au.com.bytecode.opencsv.CSVReader;
 import au.com.bytecode.opencsv.CSVWriter;
 
 public class Utils {
-
+    
+    private static SimpleDateFormat sdf;
+    
 	/**
 	 * 
 	 * @param totalSeconds
@@ -56,8 +58,8 @@ public class Utils {
 	 */
 	public static String formatTime(long totalSeconds, int timer) {
 		if (timer == 0) {
-			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-			sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
+	        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
+	        sdf.setTimeZone(TimeZone.getTimeZone("GMT+0"));
 			return sdf.format(new Date(totalSeconds * 1000));
 		} else {
 
@@ -81,13 +83,6 @@ public class Utils {
 
 	public static View dialogWebView(Context context, String fileName) {
 		View view = View.inflate(context, R.layout.dialog_webview, null);
-		//		TextView textView = (TextView) view.findViewById(R.id.message);
-		//		textView.setMovementMethod(LinkMovementMethod.getInstance());
-		//		CharSequence cs =  readTextFile(context, fileName);
-		//
-		//		SpannableString s = new SpannableString(Html.fromHtml(cs.toString()));
-		//		Linkify.addLinks(s, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
-		//		textView.setText(s);
 		WebView web = (WebView) view.findViewById(R.id.wv_dialog);
 		web.loadUrl("file:///android_asset/"+fileName);
 		return view;
